@@ -2,12 +2,27 @@
 //
 
 #include <iostream>
-#include "Department.h"
+#include "Store.h"
 #include <string>
 
 int main()
 {
-    Department *d = new Department("Deli", );
+    Store* s = new Store();
+    Department* d = new Department();
+    s->add_department(*d);
+    d->set_department_name("Deli");
+
+    for (int i = 0; i < 20; i++) {
+        Employee* e = new Employee("Employee", std::to_string(i), "Store Associate");
+        d->add_employee(*e);
+    }
+
+    for (Department dept : s->get_departments()) {
+        for (Employee emp : dept.get_employee_list()) {
+            std::cout << emp.get_full_name() << " " << emp.get_job_title() << "\n";
+        }
+    }
+    
 
 
     std::cout << d->get_department_name() <<"\n";

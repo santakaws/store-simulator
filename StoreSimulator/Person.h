@@ -7,7 +7,7 @@ class Person
 {
 public:
 	Person();
-private:
+protected:
 	std::string first_name;
 	std::string last_name;
 	bool in_store;
