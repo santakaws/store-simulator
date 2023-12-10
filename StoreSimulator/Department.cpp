@@ -9,7 +9,7 @@ Department::Department()
 {
 }
 
-Department::Department(std::string department_name, std::vector<Employee> employees, std::unordered_map<std::string, int> inventory) {
+Department::Department(std::string department_name, std::vector<Employee*> employees, std::unordered_map<std::string, int> inventory) {
 	this->department_name = department_name;
 	this->employees = employees;
 	this->inventory = inventory;
@@ -19,7 +19,7 @@ std::string Department::get_department_name() {
 	return this->department_name;
 }
 
-std::vector<Employee> Department::get_employee_list()
+std::vector<Employee*> Department::get_employee_list()
 {
 	return this->employees;
 }
@@ -58,7 +58,7 @@ void Department::add_item(std::string product_name, int quantity)
 	this->inventory[product_name] = quantity;
 }
 
-void Department::add_employee(Employee employee)
+void Department::add_employee(Employee* employee)
 {
 	this->employees.push_back(employee);
 }
@@ -68,7 +68,7 @@ void Department::set_department_name(std::string department_name)
 	this->department_name = department_name;
 }
 
-void Department::set_employees(std::vector<Employee> employees)
+void Department::set_employees(std::vector<Employee*> employees)
 {
 	this->employees = employees;
 }

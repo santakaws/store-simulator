@@ -1,5 +1,6 @@
 #include "Employee.h"
 #include <string>
+#include <ctime>
 
 Employee::Employee(std::string first_name, std::string last_name, std::string job_title)
 {
@@ -10,7 +11,7 @@ Employee::Employee(std::string first_name, std::string last_name, std::string jo
 
 std::string Employee::get_full_name()
 {
-	return this->first_name + this->last_name;
+	return this->first_name + " " + this->last_name;
 }
 
 std::string Employee::get_job_title()

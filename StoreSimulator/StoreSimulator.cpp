@@ -2,30 +2,41 @@
 //
 
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 #include "Store.h"
 #include <string>
+#include <windows.h>
+#include <thread>
 
 int main()
 {
+    std::srand(time(NULL));
     Store* s = new Store();
     Department* d = new Department();
-    s->add_department(*d);
+    s->add_department(d);
     d->set_department_name("Deli");
+    d->set_inventory({ 
+        {"Turkey", 3}, 
+        {"Roast Beef", 7},
+        {"Ham", 13} });
 
     for (int i = 0; i < 20; i++) {
-        Employee* e = new Employee("Employee", std::to_string(i), "Store Associate");
-        d->add_employee(*e);
+        Employee* e = new Employee("Employee", "#" + std::to_string(i), "Store Associate");
+        d->add_employee(e);
     }
 
-    for (Department dept : s->get_departments()) {
-        for (Employee emp : dept.get_employee_list()) {
-            std::cout << emp.get_full_name() << " " << emp.get_job_title() << "\n";
-        }
+    int name = 1;
+    //std::thread delete_check(&Store::delete_customer, s);
+
+    while (true) {
+        s->delete_customer();
+        Customer* c = new Customer("Jake", std::to_string(name++), std::rand() % 10);
+        s->add_customer(c);
+        Sleep(2000);
     }
-    
 
-
-    std::cout << d->get_department_name() <<"\n";
+    //delete_check.join();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

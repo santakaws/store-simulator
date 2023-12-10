@@ -4,7 +4,7 @@
 #include "Person.h"
 #include <string>
 
-class Employee : Person
+class Employee : public Person
 {
 public:
 	Employee(std::string first_name, std::string last_name, std::string job_title);

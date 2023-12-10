@@ -2,6 +2,7 @@
 #define PERSON_H
 
 #include <string>
+#include <ctime>
 
 class Person
 {
@@ -10,7 +11,6 @@ public:
 protected:
 	std::string first_name;
 	std::string last_name;
-	bool in_store;
 };
 
 #endif
