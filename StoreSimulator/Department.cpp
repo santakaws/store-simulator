@@ -38,18 +38,25 @@ void Department::add_quantity(std::string item_name, int amount) {
 	}
 }
 
-void Department::subtract_quantity(std::string item_name, int amount)
+bool Department::subtract_quantity(std::string item_name, int amount)
 {
 	if (this->inventory.count(item_name) > 0) {
-		if (this->inventory[item_name] -= amount >= 0) {
+		if (this->inventory[item_name] - amount >= 0) {
 			this->inventory[item_name] -= amount;
+			return true;
+		}
+		else if (this->inventory[item_name] > 0) {
+			std::cout << "Not enough stock of " + item_name + "\n";
+			return false;
 		}
 		else {
-			std::cout << "Not enough quantity\n";
+			std::cout << item_name + " is out of stock\n";
+			return false;
 		}
 	}
 	else {
 		std::cout << "Item does not exist\n";
+		return false;
 	}
 }
 

@@ -12,7 +12,13 @@
 int main()
 {
     std::srand(time(NULL));
+    std::vector<std::string> first_names = { "Jake", "Bob", "Anna", "Lauren", "Cesar", "Luis"};
+    std::vector<std::string> last_names = { "Lopez", "Garcia", "Brown", "Smith", "Armstrong", "Wallace" };
     Store* s = new Store();
+    s->set_prices({
+        {"Turkey", 6.99},
+        {"Roast Beef", 10.99},
+        {"Ham", 7.99} });
     Department* d = new Department();
     s->add_department(d);
     d->set_department_name("Deli");
@@ -26,17 +32,16 @@ int main()
         d->add_employee(e);
     }
 
-    int name = 1;
-    //std::thread delete_check(&Store::delete_customer, s);
 
     while (true) {
         s->delete_customer();
-        Customer* c = new Customer("Jake", std::to_string(name++), std::rand() % 10);
-        s->add_customer(c);
+        for (int i = 0; i < std::rand() % 3; i++) {
+            Customer* c = new Customer(first_names[std::rand() % first_names.size()], last_names[std::rand() % last_names.size()], 10 + (std::rand() % 35));
+            s->add_customer(c);
+        }
+        s->customer_actions();
         Sleep(2000);
     }
-
-    //delete_check.join();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

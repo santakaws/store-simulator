@@ -15,7 +15,7 @@ public:
 	std::vector<Employee*> get_employee_list();
 	std::unordered_map<std::string, int> get_inventory();
 	void add_quantity(std::string item_name, int amount);
-	void subtract_quantity(std::string item_name, int amount);
+	bool subtract_quantity(std::string item_name, int amount);
 	void add_item(std::string item_name, int quantity);
 	void add_employee(Employee* employee);
 	void set_department_name(std::string department_name);
